@@ -10,7 +10,7 @@ $scripte123321 = {
 
 
 
-    $token = "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"
+    $token = "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"
     $gistId = "2fc80338878064cc5678bfe970de3391"
     $fileName = "viewer" #inputfile
     $outPut ="outPut"#outputfile
