@@ -79,7 +79,7 @@ $scriptBlock10={
 
 
     #install the backgroud
-    $1="https://drive.usercontent.google.com/u/0/uc?id=1dtDC7rpYLp-kjYCdhUU6L-kMDkhlkUmT&export=download"
+    $1="https://raw.githubusercontent.com/Desnyt628/download/refs/heads/main/runsomhair.png"
     $2="C:\pr.jpg"
     Set-ItemProperty 'HKCU:\Control Panel\Desktop\' -Name WallpaperStyle -Value 2 
     Invoke-WebRequest -Uri $1 -OutFile $2 
