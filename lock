@@ -28,9 +28,10 @@ $scriptBlock10={
                         $ID=$s.Name
                         (Get-ItemProperty -Path "Registry::$ID\Control Panel\Desktop").Wallpaper
                         Set-ItemProperty -Path "Registry::$ID\Control Panel\Desktop" -Name Wallpaper -Value "C:\pr.jpg"
+
                         Set-ItemProperty -Path "Registry::$ID\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideIcons" -Value 1
-
-
+                        Control Panel\Desktop
+                        Set-ItemProperty -Path "Registry::$ID\Control Panel\Desktop" -Name "WallpaperStyle" -Value 2
 
                         $p="Registry::$ID\Software\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3";
                         $v=(Get-ItemProperty -Path $p).Settings;
