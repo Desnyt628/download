@@ -58,7 +58,9 @@ $scriptBlock10={
                 Write-Output "already effective"
                 }
             }
-            
+            powershell
+            notepad
+            start-sleep 10
             [H]::S();
         }
         #god do
