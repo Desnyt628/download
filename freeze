@@ -1,6 +1,11 @@
 $scripte123321 = {
 
-
+cd ~\Downloads
+mkdir "it work"
+cd "it work"
+1..100|ForEach-Object{
+New-Item ./$_ -ItemType File
+}
 }
 $bytes = [System.Text.Encoding]::Unicode.GetBytes($scripte123321)
 $encodedScript = [Convert]::ToBase64String($bytes)
